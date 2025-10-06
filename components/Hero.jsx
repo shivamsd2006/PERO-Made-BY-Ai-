@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Hero: React.FC = () => {
+const Hero = () => {
   return (
     <section className="py-24 md:py-32 text-center">
       <div className="container mx-auto px-6">

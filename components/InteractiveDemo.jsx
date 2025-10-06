@@ -3,21 +3,16 @@ import { getAiResponse } from '../services/geminiService';
 import { AiAction } from '../types';
 import BookmarkIcon from './icons/BookmarkIcon';
 
-interface InteractiveDemoProps {
-    onSave: (item: { concept: string; action: AiAction; response: string }) => string;
-    onUndo: (itemId: string) => void;
-}
+const InteractiveDemo = ({ onSave, onUndo }) => {
+  const [concept, setConcept] = useState('Quantum Computing');
+  const [action, setAction] = useState(AiAction.SIMPLIFY);
+  const [isLoading, setIsLoading] = useState(false);
+  const [result, setResult] = useState('');
+  const [error, setError] = useState(null);
+  const [isSaved, setIsSaved] = useState(false);
+  const [lastSavedItemId, setLastSavedItemId] = useState(null);
 
-const InteractiveDemo: React.FC<InteractiveDemoProps> = ({ onSave, onUndo }) => {
-  const [concept, setConcept] = useState<string>('Quantum Computing');
-  const [action, setAction] = useState<AiAction>(AiAction.SIMPLIFY);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [result, setResult] = useState<string>('');
-  const [error, setError] = useState<string | null>(null);
-  const [isSaved, setIsSaved] = useState<boolean>(false);
-  const [lastSavedItemId, setLastSavedItemId] = useState<string | null>(null);
-
-  const handleSubmit = useCallback(async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setResult('');

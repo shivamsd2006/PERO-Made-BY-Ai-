@@ -4,9 +4,8 @@ import BrainIcon from './icons/BrainIcon';
 import EncodeIcon from './icons/EncodeIcon';
 import RetrieveIcon from './icons/RetrieveIcon';
 import OverlearnIcon from './icons/OverlearnIcon';
-import type { Feature } from '../types';
 
-const features: Feature[] = [
+const features = [
   {
     letter: 'P',
     title: 'Prime Your Mind',
@@ -35,7 +34,7 @@ const features: Feature[] = [
 
 const colors = ['bg-blue-500', 'bg-green-500', 'bg-purple-500', 'bg-red-500'];
 
-const PeroMethod: React.FC = () => {
+const PeroMethod = () => {
   return (
     <section id="method" className="py-20">
       <div className="container mx-auto px-6">

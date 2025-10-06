@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import { SavedItem, AiAction } from '../types';
+import { AiAction } from '../types';
 import EncodeIcon from './icons/EncodeIcon';
 import RetrieveIcon from './icons/RetrieveIcon';
 import SummarizeIcon from './icons/SummarizeIcon';
 import FlashcardIcon from './icons/FlashcardIcon';
 
-interface SavedItemsProps {
-  items: SavedItem[];
-  onClear: () => void;
-}
-
-const ActionIcon: React.FC<{ action: AiAction }> = ({ action }) => {
+const ActionIcon = ({ action }) => {
     const iconProps = { className: "w-5 h-5 text-gray-400 flex-shrink-0" };
     switch (action) {
         case AiAction.SIMPLIFY:
@@ -26,7 +21,7 @@ const ActionIcon: React.FC<{ action: AiAction }> = ({ action }) => {
     }
 };
 
-const SavedItems: React.FC<SavedItemsProps> = ({ items, onClear }) => {
+const SavedItems = ({ items, onClear }) => {
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleClearClick = () => {

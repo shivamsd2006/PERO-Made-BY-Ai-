@@ -1,6 +1,6 @@
 import { AiAction } from '../types';
 
-export const getAiResponse = async (concept: string, action: AiAction): Promise<string> => {
+export const getAiResponse = async (concept, action) => {
   if (!concept.trim()) {
     return "Please enter a concept to get started.";
   }

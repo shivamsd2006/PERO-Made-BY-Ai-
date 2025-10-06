@@ -1,8 +1,7 @@
 import { GoogleGenAI } from '@google/genai';
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { AiAction } from '../types';
 
-const getPrompt = (concept: string, action: AiAction): string => {
+const getPrompt = (concept, action) => {
   switch (action) {
     case AiAction.SIMPLIFY:
       return `Explain the concept of "${concept}" in simple, easy-to-understand terms, as if you were explaining it to a complete beginner. Use an analogy if it helps.`;
@@ -35,8 +34,8 @@ BACK:
 };
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
+  req,
+  res,
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });

@@ -1,7 +1,7 @@
 import React from 'react';
 import SaveIcon from './icons/SaveIcon';
 
-const SpacedRepetition: React.FC = () => {
+const SpacedRepetition = () => {
   return (
     <section id="spaced-repetition" className="py-20 bg-gray-900">
       <div className="container mx-auto px-6">

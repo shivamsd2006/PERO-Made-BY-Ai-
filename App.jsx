@@ -6,12 +6,12 @@ import InteractiveDemo from './components/InteractiveDemo';
 import SpacedRepetition from './components/SpacedRepetition';
 import Footer from './components/Footer';
 import SavedItems from './components/SavedItems';
-import { SavedItem, AiAction } from './types';
+import { AiAction } from './types';
 
 const LOCAL_STORAGE_KEY = 'pero-saved-items';
 
 function App() {
-  const [savedItems, setSavedItems] = useState<SavedItem[]>([]);
+  const [savedItems, setSavedItems] = useState([]);
 
   useEffect(() => {
     try {
@@ -25,8 +25,8 @@ function App() {
     }
   }, []);
 
-  const handleSaveItem = (item: { concept: string; action: AiAction; response: string }): string => {
-    const newItem: SavedItem = {
+  const handleSaveItem = (item) => {
+    const newItem = {
       ...item,
       id: crypto.randomUUID(),
       timestamp: Date.now(),
@@ -40,7 +40,7 @@ function App() {
     return newItem.id;
   };
 
-  const handleUndoSave = (itemId: string) => {
+  const handleUndoSave = (itemId) => {
     setSavedItems(prevItems => {
         const updatedItems = prevItems.filter(item => item.id !== itemId);
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedItems));

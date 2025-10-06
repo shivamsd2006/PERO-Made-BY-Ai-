@@ -1,12 +1,6 @@
 import React from 'react';
-import type { Feature } from '../types';
 
-interface FeatureCardProps {
-  feature: Feature;
-  color: string;
-}
-
-const FeatureCard: React.FC<FeatureCardProps> = ({ feature, color }) => {
+const FeatureCard = ({ feature, color }) => {
   const Icon = feature.icon;
   return (
     <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-8 transform hover:-translate-y-2 transition-transform duration-300 ease-in-out shadow-lg">
