@@ -43,7 +43,7 @@ export default async function handler(
 
   if (!process.env.API_KEY) {
     console.error('API_KEY is not set in environment variables.');
-    return res.status(500).json({ error: 'API key not configured on server.' });
+    return res.status(500).json({ error: 'Server configuration error. The application is not properly set up.' });
   }
 
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
@@ -54,7 +54,7 @@ export default async function handler(
     if (!concept || !action || !Object.values(AiAction).includes(action)) {
       return res
         .status(400)
-        .json({ error: 'Missing or invalid concept or action in request body' });
+        .json({ error: 'Missing or invalid concept or action in request body.' });
     }
 
     const prompt = getPrompt(concept, action);
@@ -71,6 +71,6 @@ export default async function handler(
     console.error('Error calling Gemini API:', error);
     return res
       .status(500)
-      .json({ error: 'Failed to get response from AI service.' });
+      .json({ error: 'The AI service is currently unavailable. Please try again in a moment.' });
   }
 }

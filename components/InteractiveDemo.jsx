@@ -20,12 +20,18 @@ const InteractiveDemo = ({ onSave, onUndo }) => {
     setIsSaved(false); // Reset save state on new generation
     setLastSavedItemId(null);
     
+    if (!concept.trim()) {
+      setError("Please enter a concept to get started.");
+      setIsLoading(false);
+      return;
+    }
+
     const response = await getAiResponse(concept, action);
     
-    if (response.startsWith("Sorry,") || response.startsWith("Please enter")) {
-        setError(response);
+    if (response.error) {
+        setError(response.error);
     } else {
-        setResult(response);
+        setResult(response.text);
     }
     setIsLoading(false);
   }, [concept, action]);
@@ -123,7 +129,7 @@ const InteractiveDemo = ({ onSave, onUndo }) => {
 
           {error && (
             <div className="mt-8 bg-red-900/40 border border-red-700/50 text-red-300 px-4 py-3 rounded-xl" role="alert">
-              <p className="font-bold">An error occurred:</p>
+              <p className="font-bold">Request Failed</p>
               <p className="text-sm mt-1">{error}</p>
             </div>
           )}
